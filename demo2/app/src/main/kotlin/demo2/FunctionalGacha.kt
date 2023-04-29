@@ -1,6 +1,10 @@
 package demo2
 
-import arrow.core.*
+import arrow.core.Either
+import arrow.core.flatMap
+import arrow.core.left
+import arrow.core.right
+
 
 data class FGacha(val ids: List<Int>, val itemMap: Map<Int, List<Item>>)
 
@@ -65,9 +69,9 @@ fun main() {
         )
     )
 
-    val result = when (val item = gacha.draw(4)) {
+    val result = when (val item = gacha.draw(3)) {
         is Either.Left -> throw item.value
         is Either.Right -> "ガチャの抽選に成功しました: ${item.value}"
     }
-    println (result)
+    println(result)
 }
