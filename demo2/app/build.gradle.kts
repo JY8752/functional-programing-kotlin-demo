@@ -14,6 +14,8 @@ plugins {
     application
 
     jacoco
+
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 repositories {
@@ -35,13 +37,17 @@ dependencies {
     implementation("io.arrow-kt:arrow-core:1.2.0-RC")
     implementation("io.arrow-kt:arrow-fx-coroutines:1.2.0-RC")
 
+    implementation("io.arrow-kt:arrow-optics:1.2.0-RC")
+    ksp("io.arrow-kt:arrow-optics-ksp-plugin:1.2.0-RC")
+
     // kotest
     val kotestVersion = "5.6.1"
-    val kotestArrowExtensionVersion = "1.3.1"
+    val kotestArrowExtensionVersion = "1.3.3"
     testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
     testImplementation("io.kotest:kotest-property:$kotestVersion")
     testImplementation("io.kotest:kotest-framework-datatest:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-property-arrow:$kotestArrowExtensionVersion")
+    testImplementation("io.kotest.extensions:kotest-assertions-arrow:$kotestArrowExtensionVersion")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
